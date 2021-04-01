@@ -34,16 +34,16 @@ int main(int argc, char  *argv[]){
   }
 
   int result = FB(tape,resistance,0,0);
-  cout <<"\n" << result<<"\n" ;
+  cout <<"\n" << "Fuerza Bruta: " << result<<"\n" ;
 
   int result2 = BTF(tape,resistance,0,0);
-  cout <<"\n" << result<<"\n" ;
+  cout <<"\n" << "Backtracking por factibilidad: "<<  result2<<"\n" ;
 
   int result3 = BTO(tape,resistance,0,0);
-  cout <<"\n" << result<<"\n" ;
+  cout <<"\n" << "Backtracking por optimalidad: "<< result3<<"\n" ;
 
   int result4 = BT(tape,resistance,0,0);
-  cout <<"\n" << result<<"\n" ;
+  cout <<"\n" << "Backtracking: "<< result4<<"\n" ;
 
 
 

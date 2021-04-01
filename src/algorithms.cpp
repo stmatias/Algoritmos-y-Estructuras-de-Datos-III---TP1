@@ -22,9 +22,6 @@ int FB(vector<tuple<int, int>>& tape, int curRes, int i, int elems){
 int k = 0;
 
 
-
-
-
 int BTF(vector<tuple<int, int>>& tape, int curRes, int i, int elems){
     if(curRes<0){   
 		return 0;
