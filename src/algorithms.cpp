@@ -51,8 +51,6 @@ int BTO(vector<tuple<int, int>>& tape, int curRes, int i, int elems){
         	k=elems;
         }
         if(elems + (tape.size()-i) < k){
-            // calculo si agregando los elementos hasta el final superaria mi maximo
-            // En caso negativo, significa que no encontrare una solucion mejor a la que ya tengo
             return 0;
         }
         int wi = get<0>(tape[i]);
@@ -81,8 +79,6 @@ int BT(vector<tuple<int, int>>& tape, int curRes, int i, int elems){
         }
         // Optimalidad
         if(elems + (tape.size()-i) < k){
-            // calculo si agregando los elementos hasta el final superaria mi maximo
-            // En caso negativo, significa que no encontrare una solucion mejor a la que ya tengo
             return 0;
         }
         int wi = get<0>(tape[i]);
