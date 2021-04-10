@@ -12,10 +12,11 @@ int FB(vector<tuple<int, int>>& tape, int curRes, int i, int elems){
 	} 
 	int wi = get<0>(tape[i]);
 	int ri = get<1>(tape[i]);
-    return max(FB(tape, curRes, i+1, elems), FB(tape, min(curRes-wi, ri), i+1, elems+1));
+    return max(
+            FB(tape, curRes, i+1, elems), 
+            FB(tape, min(curRes-wi, ri), i+1, elems+1)
+        );
  }
-
-
 
 
 //////////////////////////BACKTRACKING////////////////////////////////////////////////
@@ -31,7 +32,10 @@ int BTF(vector<tuple<int, int>>& tape, int curRes, int i, int elems){
 	}else{
 		int wi = get<0>(tape[i]);
 		int ri = get<1>(tape[i]);
-		return max(BTF(tape, curRes, i+1, elems), BTF(tape, min(curRes-wi, ri), i+1, elems+1));
+		return max(
+                BTF(tape, curRes, i+1, elems), 
+                BTF(tape, min(curRes-wi, ri), i+1, elems+1)
+            );
 	}
 }
 
@@ -55,7 +59,10 @@ int BTO(vector<tuple<int, int>>& tape, int curRes, int i, int elems){
         }
         int wi = get<0>(tape[i]);
 		int ri = get<1>(tape[i]);
-        return max(BTO(tape, curRes, i+1, elems), BTO(tape, min(curRes-wi, ri), i+1, elems+1));
+        return max(
+                BTO(tape, curRes, i+1, elems), 
+                BTO(tape, min(curRes-wi, ri), i+1, elems+1)
+            );
     }
 }
 
@@ -88,3 +95,42 @@ int BT(vector<tuple<int, int>>& tape, int curRes, int i, int elems){
 }
 
 
+//////////////////////////PROGRAMACION DINAMICA////////////////////////////////////////////////
+
+#define INF -1
+
+int max_elem = 0;
+vector<vector<int>> memory;
+
+int _PD(vector<tuple<int, int>>& tape, int curRes, int i, int elems){
+    if(curRes < 0){ 
+        return 0;
+    }
+    if(i == tape.size()){
+        if(elems>max_elem){
+        	max_elem=elems;
+        }
+        return elems;
+    } 
+    if(elems + (tape.size()-i) < k){
+            return 0;
+    }    
+    if (memory[i][curRes] == INF){
+        int wi = get<0>(tape[i]);
+        int ri = get<1>(tape[i]);
+        memory[i][curRes] = max(
+                                _PD(tape, curRes, i+1, elems), 
+                                _PD(tape, min(curRes-wi, ri), i+1, elems+1)
+                            );
+    }
+    
+    return memory[i][curRes];
+    
+}
+
+
+int PD(vector<tuple<int, int>>& tape, int curRes){
+    memory.resize(tape.size(), vector<int> (curRes + 1, INF));
+    return _PD(tape, curRes, 0, 0);
+
+}
