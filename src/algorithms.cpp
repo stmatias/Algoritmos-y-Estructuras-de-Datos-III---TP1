@@ -111,18 +111,21 @@ int _PD(vector<tuple<int, int>>& tape, int curRes, int i, int elems){
         	max_elem=elems;
         }
         return elems;
-    } else {
-        if (memory[i][curRes] == INF){
-            int wi = get<0>(tape[i]);
-	        int ri = get<1>(tape[i]);
-            memory[i][curRes] = max(
-                                    _PD(tape, curRes, i+1, elems), 
-                                    _PD(tape, min(curRes-wi, ri), i+1, elems+1)
-                                );
-        }
-        
-        return memory[i][curRes];
+    } 
+    if(elems + (tape.size()-i) < k){
+            return 0;
+    }    
+    if (memory[i][curRes] == INF){
+        int wi = get<0>(tape[i]);
+        int ri = get<1>(tape[i]);
+        memory[i][curRes] = max(
+                                _PD(tape, curRes, i+1, elems), 
+                                _PD(tape, min(curRes-wi, ri), i+1, elems+1)
+                            );
     }
+    
+    return memory[i][curRes];
+    
 }
 
 
