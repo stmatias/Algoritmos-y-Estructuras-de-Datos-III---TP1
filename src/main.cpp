@@ -46,7 +46,7 @@ int main(int argc, char  *argv[]){
 	} else if (algorithm == BACKTRACKING_OPTIMALIDAD) {
 		cout << BTO(tape,resistance,0,0) << endl;
 	} else {
-		cout << "IMPLEMENTAR" << endl;
+		cout << PD(tape,resistance) << endl;
 	}
 	
 	
