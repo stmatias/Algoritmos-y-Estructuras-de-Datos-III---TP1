@@ -46,36 +46,31 @@ int BTO(vector<tuple<int, int>>& tape, int curRes, int i, int elems){
         	return elems;
     	}
     	return 0;
-    } else {
-        if (i == 0){
-            k = 0;
-        }
-       
-        if(elems>k){
-        	k=elems;
-        }
-        if(elems + (tape.size()-i) < k){
-            return 0;
-        }
-        int wi = get<0>(tape[i]);
-		int ri = get<1>(tape[i]);
-        return max(
-                BTO(tape, curRes, i+1, elems), 
-                BTO(tape, min(curRes-wi, ri), i+1, elems+1)
-            );
     }
+       
+    if(elems>k){
+      	k=elems;
+    }
+    if(elems + (tape.size()-i) < k){
+        return 0;
+    }
+    int wi = get<0>(tape[i]);
+	int ri = get<1>(tape[i]);
+    return max(
+            BTO(tape, curRes, i+1, elems), 
+            BTO(tape, min(curRes-wi, ri), i+1, elems+1)
+         );
+    
 }
 
 int BT(vector<tuple<int, int>>& tape, int curRes, int i, int elems){
     
-    //Factibilidad
     if(curRes < 0){ 
         return 0;
     }
-
-
     if(i == tape.size()){
         return elems;
+
     } else {
         if (i == 0){
             k = 0;
@@ -84,7 +79,6 @@ int BT(vector<tuple<int, int>>& tape, int curRes, int i, int elems){
         if(elems>k){
         	k=elems;
         }
-        // Optimalidad
         if(elems + (tape.size()-i) < k){
             return 0;
         }
