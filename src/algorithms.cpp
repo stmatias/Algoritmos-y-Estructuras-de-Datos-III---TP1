@@ -119,7 +119,6 @@ int _PD(vector<tuple<int, int>>& tape, int curRes, int i, int elems){
     }
     
     return memory[i][curRes];
-    
 }
 
 

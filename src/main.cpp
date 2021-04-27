@@ -39,14 +39,19 @@ int main(int argc, char  *argv[]){
 
 	if (algorithm == "FB") {
 		cout << FB(tape,resistance,0,0) << endl;
+
 	} else if (algorithm == "BT") {
 		cout << BT(tape,resistance,0,0) << endl;
+	
 	} else if (algorithm == "BTF") {
 		cout << BTF(tape,resistance,0,0) << endl;
+	
 	} else if (algorithm == "BTO") {
 		cout << BTO(tape,resistance,0,0) << endl;
+	
 	} else if (algorithm == "PD"){
 		cout << PD(tape,resistance) << endl;
+	
 	}else{
 		cout << algorithm << " no es una entrada valida" <<endl;
 	}
